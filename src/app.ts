@@ -13,6 +13,8 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use("/customer", customerRouter);
 
+app.use("/address" , addressRouter);
+
 app.use(globalErrorHandler);
 
 export default app;

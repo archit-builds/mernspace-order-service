@@ -13,5 +13,12 @@ router.get(
   c.getCustomer(req as AuthRequest, res),
   ),
 );
+router.patch(
+  "/addresses/:id",
+  authenticate,
+  asyncWrapper((req: Request, res: Response, next: NextFunction) =>
+  c.addAddress(req as AuthRequest, res),
+  ),
+);
 
 export default router;
