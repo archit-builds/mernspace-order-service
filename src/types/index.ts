@@ -32,5 +32,15 @@ export interface ProductPricingCache {
 
 export interface ProductMessage {
   id: string;
-  priceConfiguration: PriceConfiguration;
+  priceConfiguration: { [key: string]: PriceConfiguration };
+}
+
+export interface ToppingPricingCache {
+  toppingId: string;
+  price: number;
+}
+
+export interface ToppingMessage {
+  id: string;
+  price: number;
 }

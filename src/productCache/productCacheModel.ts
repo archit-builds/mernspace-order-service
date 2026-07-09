@@ -1,41 +1,30 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
+import { ProductPricingCache } from "../types";
 
-export interface ProductPricingSchema{
-    productId:string,
-    priceConfiguration:{
-        priceType :  "base"| "additional"
+const priceSchema = new mongoose.Schema({
+  priceType: {
+    type: String,
+    enum: ["base", "aditional"],
+  },
+  availableOptions: {
+    type: Object,
+    of: Number,
+  },
+});
 
-    },
-    availableOptions : { [key: string]: number }
-}
+const productCacheSchema = new mongoose.Schema<ProductPricingCache>({
+  productId: {
+    type: String,
+    required: true,
+  },
+  priceConfiguration: {
+    type: Object,
+    of: priceSchema,
+  },
+});
 
-
-
-const PriceSchema = new mongoose.Schema({
-    priceType : {
-        type : String,
-        enum : ["base" , "additional"]
-    },
-    availableOptions : {
-        type:Object,
-        Of:Number
-    }
-})
-
-const productCacheSchema = new mongoose.Schema<ProductPricingSchema>({
-    productId:{
-        type:String,
-        required:true
-    },
-    priceConfiguration : {
-        type:Object,
-        Of:PriceSchema
-    }
-
-})
-
-export default mongoose.model<ProductPricingSchema>(
-    "ProductPricingCache",
-    productCacheSchema,
-    "productCache"
-)
+export default mongoose.model(
+  "ProductPricingCache",
+  productCacheSchema,
+  "productCache",
+);
