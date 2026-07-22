@@ -26,7 +26,7 @@ export interface PriceConfiguration {
 }
 export interface ProductPricingCache {
   productId: string;
-  priceConfiguration: PriceConfiguration;
+  priceConfiguration: { [key: string]: PriceConfiguration };
 }
 
 

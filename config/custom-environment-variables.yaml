@@ -1,0 +1,7 @@
+# Maps config keys to OS environment variable names.
+# The `config` package reads these at startup and overrides the YAML values.
+# This is the standard pattern for secrets — never hardcode them in YAML.
+razorpay:
+  keyId: RAZORPAY_KEY_ID
+  keySecret: RAZORPAY_KEY_SECRET
+  webhookSecret: RAZORPAY_WEBHOOK_SECRET
